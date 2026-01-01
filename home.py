@@ -25,7 +25,7 @@ def home_page():
 
 
     # ----- Profile image file -----
-    profile_image_file_path = "sarath_image.jpg"       # TODO: Upload your profile image to the same folder as this script and update this if it has a different name
+    profile_image_file_path = "sarath_image_1.jpg"       # TODO: Upload your profile image to the same folder as this script and update this if it has a different name
 
     with open(profile_image_file_path, "rb") as img_file:
         img = "data:image/jpg;base64," + base64.b64encode(img_file.read()).decode()
@@ -34,7 +34,7 @@ def home_page():
     # ----- Your Profile Image -----
     st.html(f"""
     <div style="display: flex; justify-content: center;">
-        <img src="{img}" alt="sarath_image" width="450" height="525" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
+        <img src="{img}" alt="sarath_image_1" width="450" height="525" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
     </div>
     """)
 
