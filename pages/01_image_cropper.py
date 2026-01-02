@@ -46,20 +46,22 @@ max_width = img_arr.shape[1]    # TODO: Replace None with the maximum width of t
 
 
 # ----- Creating the sliders to receive the user input with the dimensions to crop the image ----- 
-if type(max_height) == int and type(max_width) == int:
-    
-    cols1 = st.columns([4, 1, 4])
+# Sliders (keep as‑is)
+cols1 = st.columns([4, 1, 4])
+crop_min_h, crop_max_h = cols1[0].slider("Crop Vertical Range", 0, img_arr.shape[0], (int(img_arr.shape[0]*0.1), int(img_arr.shape[0]*0.9)))
+crop_min_w, crop_max_w = cols1[2].slider("Crop Horizontal Range", 0, img_arr.shape[1], (int(img_arr.shape[1]*0.1), int(img_arr.shape[1]*0.9)))
 
-    # this returns a tuple like (100, 300), for the veritcal range to crop
-    crop_min_h, crop_max_h = cols1[0].slider("Crop Vertical Range", min_height, max_height, (int(max_height*0.1), int(max_height*0.9)))   
-    # this returns a tuple like (100, 300), for the horizontal range to crop
-    crop_min_w, crop_max_w = cols1[2].slider("Crop Horizontal Range", min_width, max_width, (int(max_width*0.1), int(max_width*0.9)))    
+st.write("## Cropped Image")
 
+# Crop & display (new)
+crop_arr = img_arr[crop_min_h:crop_max_h, crop_min_w:crop_max_w, :]
+st.image(crop_arr, caption=f"Cropped {crop_arr.shape[:2]}", use_column_width=True)
 
-    st.write("## Cropped Image")
+# Download
+buf = io.BytesIO()
+Image.fromarray(crop_arr).save(buf, format="PNG")
+st.download_button("Download cropped", buf.getvalue(), "cropped.png")
 
-else:
-    st.subheader("⚠️ You still need to develop the Ex 1.1.")
 
 
 # TODO: Ex. 1.3: Crop the image array img_arr using the crop_min_h, crop_max_h, crop_min_w and crop_max_w values -----
