@@ -1,6 +1,8 @@
 import streamlit as st
 import base64
-
+import base64
+import os
+import pathlib
     
 # ----- Page configs (tab title, favicon) -----
 st.set_page_config(
@@ -25,19 +27,22 @@ def home_page():
 
 
     # ----- Profile image file -----
-    profile_image_file_path = "images\sarath_image_1.png"  # TODO: Upload your profile image to the same folder as this script and update this if it has a different name
+    import os  # temporary check
+    profile_img_path = "images/sarath_image_1.png"  # forward slashes only
 
-    with open(profile_image_file_path, "rb") as img_file:
-        img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
-
-
+    img = ""
+    if os.path.exists(profile_img_path):
+        with open(profile_img_path, "rb") as img_file:
+            img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
     # ----- Your Profile Image -----
-    st.html(f"""
-    <div style="display: flex; justify-content: center;">
-        <img src="{img}" alt="sarath" width="450" height="525" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
+    if img:
+        st.html(f"""
+        <div style="display: flex; justify-content: center;">
+            <img src="{img}" alt="sarath" width="450" height="525" style="border-radius: 50%; object-fit: cover; margin-top: 40px; margin-bottom: 40px;">
     </div>
     """)
-
+    else:
+        st.info("📸 Add 'images/sarath_image_1.png' to repo root for profile image.")
 
     # ----- Personal title or short description -----
     current_role = "Data Analyst"   # TODO: Change this
