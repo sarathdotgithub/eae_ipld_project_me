@@ -38,10 +38,10 @@ st.write("#")
 # TODO: Ex. 1.1: Get the minimum and maximum values for the vertical and horizontal ranges, so the size of the img_arr array -----
 
 min_height = 0 
-max_height = np.shape(img_arr)[0]   # TODO: Replace None with the maximum height of the image using np.shape() function
+max_height = img_arr.shape[0]   # TODO: Replace None with the maximum height of the image using np.shape() function
 
 min_width = 0
-max_width = np.shape(img_arr)[1]    # TODO: Replace None with the maximum width of the image using np.shape() function  
+max_width = img_arr.shape[1]    # TODO: Replace None with the maximum width of the image using np.shape() function  
 
 
 
@@ -64,7 +64,7 @@ else:
 
 # TODO: Ex. 1.3: Crop the image array img_arr using the crop_min_h, crop_max_h, crop_min_w and crop_max_w values -----
 
-crop_arr =img_arr[crop_min_h:crop_max_h,crop_min_w:crop_max_w,:]   # TODO: Generate the crop array into a new variable, use NumPy array slicing
+crop_arr =img_arr[crop_min_h:crop_max_h, crop_min_w:crop_max_w,:]   # TODO: Generate the crop array into a new variable, use NumPy array slicing
 
 
 # ----- Displaying the cropped image and creating a download button to download the image -----
