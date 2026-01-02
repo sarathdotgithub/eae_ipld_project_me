@@ -25,7 +25,6 @@ def home_page():
     # ----- Top title -----
     st.html("""<div style="text-align: center;"><h1 style="text-align: center;">👋 Hi! My name is Sarath</h1></div>""")  # TODO: Add your name
 
-
     # ----- Profile image file -----
     import os  # temporary check
     profile_img_path = "images/sarath_image_1.png"  # forward slashes only
